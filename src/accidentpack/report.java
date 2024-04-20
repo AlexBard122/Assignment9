@@ -1,6 +1,6 @@
 package accidentpack;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @author abard & Devin C
@@ -9,8 +9,8 @@ import java.time.LocalDate;
 public class report implements Comparable <report>{
 	private String ID;
 	private int Severity;
-	private LocalDate StartTime;
-	private LocalDate EndTime;
+	private LocalDateTime StartTime;
+	private LocalDateTime EndTime;
 	private String Street;
 	private String City;
 	private String County;
@@ -22,7 +22,7 @@ public class report implements Comparable <report>{
 	private boolean Crossing;
 	private boolean DayNight;
 	
-	public report(String ID, int Severity, LocalDate startTime, LocalDate endTime, String Street,
+	public report(String ID, int Severity, LocalDateTime startTime, LocalDateTime endTime, String Street,
 			String City, String County, String State, int Temp,int Humidity, int Visibility,
 			String Weather, boolean Crossing, boolean DayNight) {
 		this.ID = ID;
@@ -55,16 +55,16 @@ public class report implements Comparable <report>{
 	public void setSeverity(int Severity) {
 		this.Severity = Severity;
 	}
-	public LocalDate getStartTime() {
+	public LocalDateTime getStartTime() {
 		return StartTime;
 	}
-	public void setStartTime(LocalDate StartTime) {
+	public void setStartTime(LocalDateTime StartTime) {
 		this.StartTime = StartTime;
 	}
-	public LocalDate getEndTime() {
+	public LocalDateTime getEndTime() {
 		return EndTime;
 	}
-	public void setEndTime(LocalDate EndTime) {
+	public void setEndTime(LocalDateTime EndTime) {
 		this.EndTime = EndTime;
 	}
 	public String getStreet() {
@@ -130,9 +130,6 @@ public class report implements Comparable <report>{
 
     @Override
     public int compareTo(report r) {
-//        int t = this.StartTime.compareTo(r.getStartTime());
-//        if(t==0)
-//            System.out.println("456456");
         return this.StartTime.compareTo(r.getStartTime());
     } 
 }

@@ -4,11 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import java.util.TreeMap;
 
 public class ReportHelper {
@@ -56,11 +55,12 @@ public class ReportHelper {
     /**
      * @author Devin C
      * Reads lines from a csv file and converts them to report objects
+     * which are then seperated into a TreeMap of States and stored in ArrayLists
      * @param filename the path to the csv file
      * @return a map of states to tree maps of accidents
      */
-    public static TreeMap<String, TreeMap<LocalDate, List<report>>> readAccidentReports(String filename) {
-        TreeMap<String, TreeMap<LocalDate, List<report>>> stateAccidentsMap = new TreeMap<>();
+    public static TreeMap<String, List<report>> readAccidentReports(String filename) {
+        TreeMap<String, List<report>> stateAccidentsMap = new TreeMap<>();
         
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -68,27 +68,18 @@ public class ReportHelper {
             while ((line = br.readLine()) != null) {
                 report accidentReport = readfile(line);
                 String state = accidentReport.getState();
-                LocalDate startDate = accidentReport.getStartTime();
                 
-                // Check if the state already exists in the outer map
+                // Check if the state already exists in the map
                 if (!stateAccidentsMap.containsKey(state)) {
                     // If not, create a new TreeMap for the state
-                    stateAccidentsMap.put(state, new TreeMap<>());
+                    stateAccidentsMap.put(state, new ArrayList<>());
                 }
-                
-                // Get the TreeMap for the current state
-                TreeMap<LocalDate, List<report>> stateAccidents = stateAccidentsMap.get(state);
-                
-                // Check if the date already exists in the inner map
-                if (!stateAccidents.containsKey(startDate)) {
-                    // If not, create a new ArrayList for the date
-                    stateAccidents.put(startDate, new ArrayList<>());
-                }
-                
+                               
                 // Get the ArrayList corresponding to the date
-                List<report> accidentsOnDate = stateAccidents.get(startDate);
+                List<report> stateAccidents = stateAccidentsMap.get(state);
+                
                 // Add the accident report to the list
-                accidentsOnDate.add(accidentReport);
+                stateAccidents.add(accidentReport);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -106,8 +97,8 @@ public class ReportHelper {
         String[] items = line.split(",");
         String id = items[0];
         int severity = Integer.parseInt(items[1]);
-        LocalDate startTime = dateConvert(items[2]);
-        LocalDate endTime = dateConvert(items[3]);
+        LocalDateTime startTime = dateTimeConvert(items[2]);
+        LocalDateTime endTime = dateTimeConvert(items[3]);
         String street = items[4];
         String city = items[5];
         String county = items[6];
@@ -123,32 +114,31 @@ public class ReportHelper {
         return r;
     }
     
-    //  Taken from Dr. Behrooz Mansouri
+    //  Taken from Dr. Behrooz Mansouri and modified to use LocalDateTime by Devin
     
     //  Create a formatter with the specific date-time format
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     
     /**
-     * @author Dr. Behrooz Mansouri
-     * This method takes in the string representation of dateTime and return LocalDate object
+     * @author Dr. Behrooz Mansouri & Devin C
+     * This method takes in the string representation of dateTime and return LocalDateTime object
      * @param dateTimeString
      * @return
      */
-    public static LocalDate dateConvert(String dateTimeString)
+    public static LocalDateTime dateTimeConvert(String dateTimeString)
     {
         // for some of the instances the after seconds there are 0s; this line will remove them
         dateTimeString = dateTimeString.split("\\.")[0];
 
         // Parse the string using the formatter
-        LocalDate localDate;
+        LocalDateTime localDateTime;
         try {
-            localDate = LocalDate.parse(dateTimeString, formatter);
+            localDateTime = LocalDateTime.parse(dateTimeString, formatter);
           } catch (Exception e) {
             // Handle parsing exception, e.g., invalid format, invalid date
             System.err.println("Error parsing date-time string: " + e.getMessage());
-            localDate = null;
+            localDateTime = null;
           }
-        return localDate;
+        return localDateTime;
     }
-
 }
