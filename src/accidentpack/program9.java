@@ -44,7 +44,7 @@ public class program9 {
 		
 		//create a copy of the treemap and sort it 10 times, reporting the avg time to sort
 		
-		QuickSortRandom.quickSort(report.get(state));
+		QuickSortMedianOf10.quickSort(report.get(state));
 		for(report reports : report.get(state)) {
 			System.out.println(reports.getStartTime());
 		}

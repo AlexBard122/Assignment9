@@ -1,6 +1,7 @@
 package accidentpack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -42,18 +43,19 @@ public class QuickSortMedianOf10 {
     * @return the index of the pivot element after partitioning
     */
     private static int partition(ArrayList<report> reports, int first, int last) {
-        // Pick 10 reports at regular intervals
-        ArrayList<report> pivotCandidates = new ArrayList<>();
+        // Select 10 pivot candidates
+        report[] pivotCandidates = new report[10];
         int interval = last / 10;
-        for (int i = 0; i <= last; i += interval) {
-            pivotCandidates.add(reports.get(i));
+        for (int i = 0; i < 10; i++) {
+            int index = first + (i * interval);
+            pivotCandidates[i] = reports.get(index);
         }
 
         // Sort the pivot candidates
-        Collections.sort(pivotCandidates);
+        Arrays.sort(pivotCandidates);
 
         // Select the median among the candidates as the pivot
-        report pivot = pivotCandidates.get(pivotCandidates.size() / 2);
+        report pivot = pivotCandidates[5]; // Median of 10 is at index 5
 
         // Move the pivot to the beginning of the array
         int pivotIndex = reports.indexOf(pivot);
