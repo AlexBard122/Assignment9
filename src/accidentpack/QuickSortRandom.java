@@ -45,6 +45,8 @@ public class QuickSortRandom {
         Random rand = new Random();
         // Select random element as pivot value
         int pivotIndex = rand.nextInt(last);
+        if(pivotIndex == 0)
+        	pivotIndex++;
         report pivot = reports.get(pivotIndex);
         // Swap pivot with first element
         swap(reports, first, pivotIndex);
