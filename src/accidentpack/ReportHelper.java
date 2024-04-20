@@ -59,8 +59,8 @@ public class ReportHelper {
      * @param filename the path to the csv file
      * @return a map of states to tree maps of accidents
      */
-    public static TreeMap<String, List<report>> readAccidentReports(String filename) {
-        TreeMap<String, List<report>> stateAccidentsMap = new TreeMap<>();
+    public static TreeMap<String, ArrayList<report>> readAccidentReports(String filename) {
+        TreeMap<String, ArrayList<report>> stateAccidentsMap = new TreeMap<>();
         
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
