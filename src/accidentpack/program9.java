@@ -56,15 +56,13 @@ public class program9 {
 //		double avgTime = 0.0;
 		
 			
-		//partitionWithFirst(report);
+		partitionWithFirst(report);
 			
-		
+		partitionWithLast(report);
 		
 		//partitionWithMedianOf10(report);
 		
 		partitionWithMedianOf3(report);
-		
-		partitionWithLast(report);
 		
 		partitionWithMid(report);
 		
