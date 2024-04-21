@@ -42,13 +42,16 @@ public class ReportHelper {
 	 * @param time2
 	 * @return String
 	 */
-	public static String convertTime(long time1, long time2) {
+	public static double convertTime(long time1, long time2) {
 		long elapsedTime = time2 - time1;
 		double elapsedTimeSeconds;
 		elapsedTimeSeconds = elapsedTime / 1000000.0;
 		String returnValue = String.valueOf(elapsedTimeSeconds);
-		returnValue = returnValue.substring(0, 5);
-		return returnValue;
+		if(returnValue.length() > 5) {
+			returnValue = returnValue.substring(0, 5);
+			return Double.valueOf(returnValue);
+		}
+		return Double.valueOf(returnValue);
 	}
 	
     

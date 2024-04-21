@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * @author Devin C
+ * @author Devin C & Alex B
  * A QuickSort class based on example provided in chapter 8.9 of textbook
  * and modified to work with report objects.
  */
@@ -45,6 +45,8 @@ public class QuickSortRandom {
         Random rand = new Random();
         // Select random element as pivot value
         int pivotIndex = rand.nextInt(last);
+        if(pivotIndex == 0)
+        	pivotIndex++;
         report pivot = reports.get(pivotIndex);
         // Swap pivot with first element
         swap(reports, first, pivotIndex);
