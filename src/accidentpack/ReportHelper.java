@@ -35,13 +35,13 @@ public class ReportHelper {
 		}
 	}
 	
-//	/**
-//	 * @author abard
-//	 * calculates elapsed time and converts it to miliseconds
-//	 * @param time1
-//	 * @param time2
-//	 * @return String
-//	 */
+	/**
+	 * @author abard
+	 * calculates elapsed time and converts it to miliseconds
+	 * @param time1
+	 * @param time2
+	 * @return String
+	 */
 //	public static double convertTime(long time1, long time2) {
 //		long elapsedTime = time2 - time1;
 //		double elapsedTimeSeconds;
@@ -54,6 +54,13 @@ public class ReportHelper {
 //		return Double.valueOf(returnValue);
 //	}
 	
+	/**
+    * @author Devin C
+    * calculates elapsed time and converts it to miliseconds
+    * @param time1
+    * @param time2
+    * @return Double
+    */
 	public static double convertTime(long time1, long time2) {
 	    long elapsedTime = time2 - time1;
 	    return (double) elapsedTime / 1_000_000; // Convert elapsed time from nanoseconds to milliseconds
