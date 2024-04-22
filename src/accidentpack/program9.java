@@ -106,7 +106,7 @@ public class program9 {
 		for(Map.Entry<String, ArrayList<report>> reports : reportCopy.entrySet()) {
 			startTime = System.nanoTime();
 			//CHANGE THIS LINE TO CALL DIFFERENT SORTING ALGORITHMS
-			QuickSortMidNoInsertionSort.quickSort(reports.getValue());
+			QuickSortMid.quickSort(reports.getValue());
 			endTime = System.nanoTime();
 			System.out.println(reports.getKey() + ": " + reports.getValue().size() + " Reports  " +
 					"\t" + ReportHelper.convertTime(startTime, endTime) + " Miliseconds");
