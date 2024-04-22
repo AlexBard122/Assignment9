@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * A QuickSort class based on example provided in chapter 8.9 of textbook
  * and modified to work with report objects.
  */
-public class QuickSortMid {
+public class QuickSortMidNoInsertionSort {
     /**
     * Sorts the ArrayList of report objects using the quicksort algorithm.
     * @param reports the ArrayList of report objects to be sorted
@@ -21,23 +21,15 @@ public class QuickSortMid {
     
     /**
     * Helper method for quicksort. Recursively sorts the sub-array of report objects. 
-    * 
-    * If the size of the sub-array is less than or equal to 7, insertion sort is used.
-    * 
     * @param reports the ArrayList of report objects to be sorted
     * @param first the index of the first element of the sub-array
     * @param last the index of the last element of the sub-array
     */
     private static void quickSortHelper(ArrayList<report> reports, int first, int last) {
-     // If the size of the sub-array is less than or equal to 7, switch to insertion sort
-        if (last <= 7) {
-            insertionSort(reports, first, last);
-        } else {
-            if (first < last) {
-                int pivotIndex = partition(reports, first, last);
-                quickSortHelper(reports, first, pivotIndex - 1);
-                quickSortHelper(reports, pivotIndex + 1, last);
-            }
+        if (first < last) {
+            int pivotIndex = partition(reports, first, last);
+            quickSortHelper(reports, first, pivotIndex - 1);
+            quickSortHelper(reports, pivotIndex + 1, last);
         }
     }
     
@@ -91,27 +83,5 @@ public class QuickSortMid {
         report temp = reports.get(i);
         reports.set(i, reports.get(j));
         reports.set(j, temp);
-    }
-    
-    /**
-     * Sorts a sub-array of report objects using the insertion sort algorithm.
-     *
-     * The insertion sort algorithm iteratively inserts elements into their correct positions within
-     * the sorted portion of the array.
-     *
-     * @param reports the ArrayList of report objects to be sorted
-     * @param first   the index of the first element of the sub-array to be sorted
-     * @param last    the index of the last element of the sub-array to be sorted
-     */
-    private static void insertionSort(ArrayList<report> reports, int first, int last) {
-        for (int i = first + 1; i <= last; i++) {
-            report current = reports.get(i);
-            int j = i - 1;
-            while (j >= first && reports.get(j).compareTo(current) > 0) {
-                reports.set(j + 1, reports.get(j));
-                j--;
-            }
-            reports.set(j + 1, current);
-        }
     }
 }

@@ -53,17 +53,17 @@ public class program9 {
 //		double avgTime = 0.0;
 		
 			
-		partitionWithFirst(report);
+//		partitionWithFirst(report);
 			
-		partitionWithLast(report);
+//		partitionWithLast(report);
 		
-		partitionWithMedianOf10(report);
+//		partitionWithMedianOf10(report);
 		
-		partitionWithMedianOf3(report);
+//		partitionWithMedianOf3(report);
 		
 		partitionWithMid(report);
 		
-		partitionWithRandom(report);
+//		partitionWithRandom(report);
 			
 			//endTime = System.nanoTime();
 			//processTime = ReportHelper.convertTime(startTime, endTime);
@@ -106,7 +106,7 @@ public class program9 {
 		for(Map.Entry<String, ArrayList<report>> reports : reportCopy.entrySet()) {
 			startTime = System.nanoTime();
 			//CHANGE THIS LINE TO CALL DIFFERENT SORTING ALGORITHMS
-			QuickSortMid.quickSort(reports.getValue());
+			QuickSortMidNoInsertionSort.quickSort(reports.getValue());
 			endTime = System.nanoTime();
 			System.out.println(reports.getKey() + ": " + reports.getValue().size() + " Reports  " +
 					"\t" + ReportHelper.convertTime(startTime, endTime) + " Miliseconds");
