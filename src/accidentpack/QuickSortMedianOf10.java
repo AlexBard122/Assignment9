@@ -43,12 +43,20 @@ public class QuickSortMedianOf10 {
     * @return the index of the pivot element after partitioning
     */
     private static int partition(ArrayList<report> reports, int first, int last) {
+        // Calculate the interval to ensure it's not zero
+        int interval = Math.max(1, last / 10); // Ensures interval is at least 1
+
         // Select 10 pivot candidates
         report[] pivotCandidates = new report[10];
-        int interval = last / 10;
         for (int i = 0; i < 10; i++) {
             int index = first + (i * interval);
-            pivotCandidates[i] = reports.get(index);
+            // Check if the index is within bounds
+            if (index < reports.size()) {
+                pivotCandidates[i] = reports.get(index);
+            } else {
+                // If index exceeds the size of the ArrayList, set a default pivot
+                pivotCandidates[i] = reports.get(reports.size() - 1);
+            }
         }
 
         // Sort the pivot candidates

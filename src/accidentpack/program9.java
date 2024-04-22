@@ -4,10 +4,7 @@
 package accidentpack;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -60,7 +57,7 @@ public class program9 {
 			
 		partitionWithLast(report);
 		
-		//partitionWithMedianOf10(report);
+		partitionWithMedianOf10(report);
 		
 		partitionWithMedianOf3(report);
 		
