@@ -1,0 +1,47 @@
+README file
+
+Execution instructions:
+
+From file location of .java files
+type cmd into file explorer
+in cmd.exe:
+	javac report.java
+	javac Reporthelper.java
+	javac program9.java
+	java program9 <filepath of accidents.csv>
+									
+
+Alex:
+	GitHub Project Manager
+	Program Debugger
+Tasks:
+	Writing main program
+	README file management
+	PDF file management
+	Data Table management
+Methods:
+	program9:
+		Note: Alex created all the methods used in program9
+	reportHelper:
+		countReports()
+		convertTime()
+		readfile()
+	report
+
+Devin:
+	Head Programmer
+	Program Debugger
+Tasks:
+	Writing quick sort classes
+	part 1 & 2 of assignment 9 (without PDF and data entry)
+Methods:
+	QuickSortFirst
+	QuickSortLast
+	QuickSortMedianOf10
+	QuicksSortMedianOf3
+	QuickSortMid
+	QuickSortMidNoInsertionSort
+	QuickSortRandom
+	(Note: Devin handled all methods within the quicksorting classes since they were all 
+	derived from QuickSortFirst)
+	report
